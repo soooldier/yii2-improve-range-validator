@@ -1,0 +1,21 @@
+{
+    "name": "soooldier/yii2-improve-range-validator",
+    "description": "yii2 improve range validator",
+    "type": "yii2-extension",
+    "keywords": ["yii2","validator","range"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "soooldier",
+            "email": "soooldier@live.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "improve\\rangeValidator\\": ""
+        }
+    }
+}
