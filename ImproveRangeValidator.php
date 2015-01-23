@@ -40,7 +40,7 @@ class ImproveRangeValidator extends RangeValidator
      */
     public function validateAttribute($model, $attribute)
     {
-        if($this->advanceRange instanceof Closure) {
+        if($this->advanceRange instanceof \Closure) {
             $this->range = call_user_func($this->advanceRange, $this->range, $model);
         }
         $tmp_value = explode($this->sep, $model->$attribute);
