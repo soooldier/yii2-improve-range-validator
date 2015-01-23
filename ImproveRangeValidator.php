@@ -28,6 +28,11 @@ class ImproveRangeValidator extends RangeValidator
     public $advanceRange;
 
     /**
+     * @var bool 返回数组
+     */
+    public $outputArray = false;
+
+    /**
      * @inheritdoc
      */
     public function init()
@@ -35,15 +40,19 @@ class ImproveRangeValidator extends RangeValidator
         parent::init();
         $this->allowArray = true;
     }
+
     /**
      * @inheritdoc
      */
     public function validateAttribute($model, $attribute)
     {
-        if($this->advanceRange instanceof \Closure) {
+        if ($this->advanceRange instanceof \Closure) {
             $this->range = call_user_func($this->advanceRange, $this->range, $model);
         }
         $tmp_value = explode($this->sep, $model->$attribute);
+        if ($this->outputArray) {
+            $model->$attribute = $tmp_value;
+        }
         $result = $this->validateValue($tmp_value);
         if (!empty($result)) {
             $this->addError($model, $attribute, $result[0], $result[1]);
