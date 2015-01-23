@@ -50,12 +50,12 @@ class ImproveRangeValidator extends RangeValidator
             $this->range = call_user_func($this->advanceRange, $this->range, $model);
         }
         $tmp_value = explode($this->sep, $model->$attribute);
-        if ($this->outputArray) {
-            $model->$attribute = $tmp_value;
-        }
         $result = $this->validateValue($tmp_value);
         if (!empty($result)) {
             $this->addError($model, $attribute, $result[0], $result[1]);
+        }
+        if ($this->outputArray) {
+            $model->$attribute = $tmp_value;
         }
     }
 }
